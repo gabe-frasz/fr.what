@@ -1,11 +1,20 @@
-from curl_cffi import requests
+import requests
+from bs4 import BeautifulSoup
+import json
+import time
 
-url = "https://www.fundamentus.com.br/resultado.php"
-response = requests.get(url, impersonate="chrome110") 
+WEBHOOK_URL = ""
+AUTH_TOKEN = ""
 
-if response.status_code != 200:
-  print("Failed to fetch data from Fundamentus")
-  print(response.text)
-  exit(1)
+def main():
+  headers = {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+  } 
 
-print("Fetched data from Fundamentus")
+  url = "https://www.fundamentus.com.br/resultado.php"
+  response = requests.get(url, headers=headers)
+  
+  if response.status_code != 200:
+    print(f"HTTP error: {response.status_code}")
+
+  print("Parsing HTML...")
