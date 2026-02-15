@@ -18,3 +18,6 @@ def main():
     print(f"HTTP error: {response.status_code}")
 
   print("Parsing HTML...")
+
+if __name__ == "__main__":
+  main()
